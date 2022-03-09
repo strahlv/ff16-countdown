@@ -8,34 +8,66 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <title>XVI hoje!</title>
+    <script
+      src="https://kit.fontawesome.com/a783aedd26.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="luxon.min.js"></script>
+    <title>XVI soon&trade;!</title>
   </head>
   <body>
     <main>
       <div class="dark-overlay"></div>
-      <h1 id="timeLeft">2h left</h1>
+      <h1 id="countdown">TBA</h1>
     </main>
     <video src="particles.mp4" loop autoplay muted></video>
-    <script src="luxon.min.js"></script>
+    <audio src="prelude.mp3" loop autoplay></audio>
+    <button class="audio-btn">
+      <i class="fa-solid fa-volume-high"></i>
+    </button>
     <script>
+      // Countdown
       const DateTime = luxon.DateTime;
       const Interval = luxon.Interval;
-      let h1 = document.querySelector("#timeLeft");
-      const sopTime = DateTime.fromISO("2022-03-09T19:00:00");
-      const setTime = () => {
+
+      const countdown = document.querySelector("#countdown");
+
+      const trailerDate = DateTime.local(2022, 6, 1);
+
+      const setCountdown = () => {
         const now = DateTime.now();
-        const i = Interval.fromDateTimes(now, sopTime);
-        const seconds = Math.floor(i.length("seconds"));
-        const minutes = Math.floor(i.length("minutes"));
-        const hours = Math.floor(i.length("hours"));
-        h1.innerHTML = `${String(hours).padStart(2, "0")}:${String(
-          minutes
-        ).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+        const interval = Interval.fromDateTimes(now, trailerDate);
+
+        const seconds = interval.length("seconds") % 60;
+        const minutes = interval.length("minutes") % 60;
+        const hours = interval.length("hours") % 24;
+        const days = interval.length("days");
+
+        const padStartTime = (number) =>
+          String(Math.floor(number)).padStart(2, "0");
+
+        const secondsStr = `${padStartTime(seconds)} <span>seconds</span>`;
+        const minutesStr = `${padStartTime(minutes)} <span>minutes</span>`;
+        const hoursStr = `${padStartTime(hours)} <span>hours</span>`;
+        const daysStr = `${padStartTime(days)} <span>days</span>`;
+
+        countdown.innerHTML = `${daysStr} ${hoursStr} ${minutesStr} ${secondsStr} `;
       };
-      setInterval(setTime, 100);
+
+      setInterval(setCountdown, 100);
+
+      // Toggle audio
+      const audio = document.querySelector("audio");
+      const volumeBtn = document.querySelector(".audio-btn");
+      const volumeOnIcon = '<i class="fa-solid fa-volume-high"></i>';
+      const volumeOffIcon = '<i class="fa-solid fa-volume-xmark"></i>';
+      volumeBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        volumeBtn.innerHTML = audio.muted ? volumeOffIcon : volumeOnIcon;
+      });
     </script>
   </body>
 </html>

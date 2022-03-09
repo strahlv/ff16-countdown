@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url("hero.jpg") no-repeat;
+  background: url("hero.jpg") no-repeat top;
 }
 
 div.dark-overlay {
@@ -19,6 +19,7 @@ div.dark-overlay {
     rgba(0, 0, 0, 1) 0%,
     rgba(255, 255, 255, 0) 100%
   );
+  z-index: 0;
 }
 
 main {
@@ -30,9 +31,15 @@ main {
 }
 
 main h1 {
-  z-index: 50;
+  z-index: 15;
+  text-align: center;
   font-size: 5rem;
   font-family: "Noto Serif Display", serif;
+}
+
+main h1 span {
+  font-size: 2rem;
+  font-style: italic;
 }
 
 video {
@@ -43,4 +50,21 @@ video {
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
   z-index: 10;
+}
+
+button.audio-btn {
+  cursor: pointer;
+  z-index: 20;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 64px;
+  height: 64px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  background: none;
 }
