@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+    <title>XVI hoje!</title>
+  </head>
+  <body>
+    <main>
+      <div class="dark-overlay"></div>
+      <h1 id="timeLeft">2h left</h1>
+    </main>
+    <video src="particles.mp4" loop autoplay muted></video>
+    <script src="luxon.min.js"></script>
+    <script>
+      const DateTime = luxon.DateTime;
+      const Interval = luxon.Interval;
+      let h1 = document.querySelector("#timeLeft");
+      const sopTime = DateTime.fromISO("2022-03-09T19:00:00");
+      const setTime = () => {
+        const now = DateTime.now();
+        const i = Interval.fromDateTimes(now, sopTime);
+        const seconds = Math.floor(i.length("seconds"));
+        const minutes = Math.floor(i.length("minutes"));
+        const hours = Math.floor(i.length("hours"));
+        h1.innerHTML = `${String(hours).padStart(2, "0")}:${String(
+          minutes
+        ).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+      };
+      setInterval(setTime, 100);
+    </script>
+  </body>
+</html>
