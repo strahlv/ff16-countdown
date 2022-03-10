@@ -24,11 +24,15 @@
       <h1 id="countdown">TBA</h1>
     </main>
     <video src="particles.mp4" loop autoplay muted></video>
-    <audio src="./prelude.mp3" loop autoplay preload="auto"></audio>
+    <audio src="prelude.mp3" loop autoplay></audio>
     <button class="audio-btn">
       <i class="fa-solid fa-volume-high"></i>
     </button>
     <script>
+      window.addEventListener("load", () => {
+        var context = new AudioContext();
+      });
+
       // Countdown
       const DateTime = luxon.DateTime;
       const Interval = luxon.Interval;
