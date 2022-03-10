@@ -24,11 +24,9 @@
       <h1 id="countdown">TBA</h1>
     </main>
     <video src="particles.mp4" loop autoplay muted></video>
-    <audio loop autoplay preload="auto">
-      <source src="prelude.mp3" />
-    </audio>
+    <audio src="prelude.mp3" loop muted preload="auto"></audio>
     <button class="audio-btn">
-      <i class="fa-solid fa-volume-high"></i>
+      <i class="fa-solid fa-volume-xmark"></i>
     </button>
     <script>
       // Countdown
@@ -66,7 +64,8 @@
       const volumeBtn = document.querySelector(".audio-btn");
       const volumeOnIcon = '<i class="fa-solid fa-volume-high"></i>';
       const volumeOffIcon = '<i class="fa-solid fa-volume-xmark"></i>';
-      volumeBtn.addEventListener("click", () => {
+      volumeBtn.addEventListener("click", (context) => {
+        audio.play();
         audio.muted = !audio.muted;
         volumeBtn.innerHTML = audio.muted ? volumeOffIcon : volumeOnIcon;
       });
