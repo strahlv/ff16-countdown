@@ -35,6 +35,18 @@ main h1 {
   text-align: center;
   font-size: 5rem;
   font-family: "Noto Serif Display", serif;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    text-replace: translateY(0);
+  }
 }
 
 main h1 span {
