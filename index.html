@@ -29,10 +29,6 @@
       <i class="fa-solid fa-volume-high"></i>
     </button>
     <script>
-      window.addEventListener("load", () => {
-        var context = new AudioContext();
-      });
-
       // Countdown
       const DateTime = luxon.DateTime;
       const Interval = luxon.Interval;
@@ -65,6 +61,8 @@
 
       // Toggle audio
       const audio = document.querySelector("audio");
+      audio.play();
+
       const volumeBtn = document.querySelector(".audio-btn");
       const volumeOnIcon = '<i class="fa-solid fa-volume-high"></i>';
       const volumeOffIcon = '<i class="fa-solid fa-volume-xmark"></i>';
